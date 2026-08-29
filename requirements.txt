@@ -1,0 +1,5 @@
+Flask==3.0.3
+tensorflow==2.20.0
+numpy>=1.26,<3.0
+nltk==3.9.1
+scikit-learn==1.5.2

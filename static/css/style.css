@@ -1,0 +1,47 @@
+body {
+    background-color: #ebeff4;
+}
+
+.container {
+    max-width: 700px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.emoji {
+    font-size: 30px;
+}
+
+.subtitle {
+    color: #6c757d;
+    margin-bottom: 25px;
+}
+
+.example-btn {
+    font-size: 13px;
+    margin: 3px;
+}
+
+.confidence-bar {
+    height: 10px;
+    border-radius: 5px;
+}
+
+.result-positive {
+    color: #198754;
+}
+
+.result-negative {
+    color: #dc3545;
+}
+
+footer {
+    text-align: center;
+    color: #adb5bd;
+    font-size: 13px;
+    margin-top: 15px;
+}

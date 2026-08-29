@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Review Sentiment Analyzer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mb-1">Amazon Review Sentiment Analyzer</h2>
+        <p class="subtitle">AI-powered sentiment analysis using a GRU deep learning model</p>
+
+        <form method="POST">
+            <textarea class="form-control mb-2" name="text" rows="4"
+                placeholder="Write an Amazon product review here...">{{ review_text or '' }}</textarea>
+
+            <div class="mb-3 text-start">
+               
+                <button type="submit" name="text"
+                    value="Excellent product! The quality is amazing and I would definitely buy it again."
+                    class="btn btn-outline-success example-btn">Positive</button>
+                <button type="submit" name="text"
+                    value="Terrible product. It stopped working after two days and I am very disappointed."
+                    class="btn btn-outline-danger example-btn">Negative</button>
+                <button type="submit" name="text"
+                    value="The product is okay. It works as expected but nothing particularly impressive."
+                    class="btn btn-outline-secondary example-btn">Neutral</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict Sentiment</button>
+        </form>
+
+        {% if error %}
+            <div class="alert alert-warning mt-4" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if sentiment %}
+            <h3 class="mt-4 {{ 'result-positive' if sentiment == 'Positive' else 'result-negative' }}">
+                {{ sentiment }}
+                <span class="emoji">
+                    {% if sentiment == 'Positive' %} 😊 {% else %} 😡 {% endif %}
+                </span>
+            </h3>
+            <p class="mb-1">Confidence: <strong>{{ confidence }}%</strong></p>
+            <div class="progress confidence-bar mb-2">
+                <div class="progress-bar {{ 'bg-success' if sentiment == 'Positive' else 'bg-danger' }}"
+                     role="progressbar" style="width: {{ confidence }}%"></div>
+            </div>
+            <p class="text-muted"><small>Prediction score: {{ score }}</small></p>
+        {% endif %}
+
+        <footer>
+            Model: GRU (128 units) &middot; Vocabulary: 1,000 &middot; Sequence length: 100
+        </footer>
+    </div>
+</body>
+</html>
